@@ -1,21 +1,16 @@
-pub struct Student (u32,String,String,);
+pub struct Student (pub u32,pub String,pub String,);
    
 
 pub fn id(student: &Student) -> u32 {
-    let Student(id,_,_) = student;
-    *id
+    student.0
 }
 
 pub fn first_name(student: &Student) -> String {
-    let Student(_,firstname,_) = student;
-
-    firstname.to_string()
+    student.1.to_string()
 }
 
 pub fn last_name(student: &Student) -> String {
-    let Student(_,_,lastname) = student;
-
-    lastname.to_string()
+    student.2.to_string()
 }
 
 #[cfg(test)]
