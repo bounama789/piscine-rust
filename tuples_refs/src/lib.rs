@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub struct Student (pub u32,pub String,pub String,);
    
 
