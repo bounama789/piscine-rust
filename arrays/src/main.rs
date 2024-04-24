@@ -5,7 +5,7 @@ fn main() {
 	// let a1: Vec<i32> = (1..11).; //missing info here
 	// let b = [_; 10]; //missing info here
 
-	println!("The Sum of the elements in {:?} = {}", a, sum(a));//missing info here
+	println!("The Sum of the elements in {:?} = {}", a, sum(&a));//missing info here
 	// println!("The Sum of the elements in {:?} = ", a1, sum(a1));//missing info here
 	// println!("The Sum of the elements in {:?} = {}", b, sum(b));//missing info here
 	println!(
