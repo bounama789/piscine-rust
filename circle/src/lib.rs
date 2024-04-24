@@ -7,20 +7,20 @@ pub struct Circle {
 }
 
 impl Circle {
-    fn new(x: f64, y: f64, r: f64) -> Self {
+    pub fn new(x: f64, y: f64, r: f64) -> Self {
         Circle {
             center: Point { x, y },
             radius: r,
         }
     }
 
-    fn diameter(&self) -> u64 {
+    pub fn diameter(&self) -> u64 {
         (2.0 * self.radius) as u64
     }
-    fn area(&self) -> f64 {
+    pub fn area(&self) -> f64 {
         PI * self.radius * self.radius
     }
-    fn intersect(&self, circle: &Circle) -> bool {
+    pub fn intersect(&self, circle: &Circle) -> bool {
         circle.center.distance(&self.center) < self.radius + circle.radius
     }
 }
@@ -32,7 +32,7 @@ pub struct Point {
 }
 
 impl Point {
-    fn distance(&self, point: &Point) -> f64 {
+    pub fn distance(&self, point: &Point) -> f64 {
         let (dx, dy) = (point.x - self.x, point.y - self.y);
         (dx * dx + dy * dy).sqrt()
     }
