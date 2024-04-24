@@ -1,42 +1,60 @@
-// pub fn delete_and_backspace(s: &mut String) {
-//     let  q: &mut String = s;
-//     q.char_indices().for_each(|(idx, c)| {
-//         if c == '-' {
-//             q.replace_range(idx-1..=idx, "");
-//         }
-//     });
-    // {
-    // Some((i, ch)) => {
-    //     if *ch == '-' {
-    //         println!("range: {}..{}",i-1,i);
-    //         s.replace_range(i - 1..=*i, "");
-    //     }
-    // }
-    // None => todo!(),
-// }
+pub fn delete_and_backspace(s: &mut String) {
+    let mut result = String::new();
 
-// pub fn do_operations(v: &mut Vec<String>) {}
+    for c in s.chars() {
+        if c == '-' {
+            result.pop();
+        } else {
+            result.push(c);
+        }
+    }
 
-// #[cfg(test)]
-// mod tests {
-//     use super::*;
+    let mut final_result = String::new();
+    for c in result.chars().rev() {
+        if c == '+' {
+            final_result.pop();
+        }else {
+            final_result.push(c);
+        }
+    }
 
-//     #[test]
-//     fn test_delete_and_backspace() {
-//         let mut a = String::from("bpp--o+er+++sskroi-++lcw");
-//         delete_and_backspace(&mut a);
-//         assert_eq!(a, "borrow");
-//     }
+    *s = final_result.chars().rev().collect();
+}
 
-//     #[test]
-//     fn test_do_operations() {
-//         let mut b: Vec<String> = vec![
-//             "2+2".to_string(),
-//             "3+2".to_string(),
-//             "10-3".to_string(),
-//             "5+5".to_string(),
-//         ];
-//         do_operations(&mut b);
-//         assert_eq!(b, ["4", "5", "7", "10"]);
-//     }
-// }
+pub fn do_operations(v: &mut Vec<String>) {
+    for i in 0..v.len() {
+        let parts = v[i].split(|c: char| !c.is_numeric())
+            .filter_map(|n| n.parse::<i32>().ok())
+            .collect::<Vec<_>>();
+
+        if v[i].contains('+') {
+            v[i] = (parts[0] + parts[1]).to_string();
+        } else if v[i].contains('-') {
+            v[i] = (parts[0] - parts[1]).to_string();
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_delete_and_backspace() {
+        let mut a = String::from("bpp--o+er+++sskroi-++lcw");
+        delete_and_backspace(&mut a);
+        assert_eq!(a, "borrow");
+    }
+
+    #[test]
+    fn test_do_operations() {
+        let mut b: Vec<String> = vec![
+            "2+2".to_string(),
+            "3+2".to_string(),
+            "10-3".to_string(),
+            "5+5".to_string(),
+        ];
+        do_operations(&mut b);
+        assert_eq!(b, ["4", "5", "7", "10"]);
+    }
+}
