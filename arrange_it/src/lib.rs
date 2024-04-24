@@ -7,10 +7,8 @@ pub fn arrange_phrase(phrase: &str) -> String {
         })
         .collect();
 
-    // Sort words based on the extracted indices
     words_with_indices.sort_by_key(|&(_, index)| index);
 
-    // Construct the sorted phrase without numbers
     let sorted_phrase = words_with_indices
         .into_iter()
         .map(|(word, _)| {
