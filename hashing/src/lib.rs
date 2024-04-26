@@ -9,9 +9,8 @@ pub fn mean(list: &Vec<i32>) -> f64 {
 pub fn median(list: &Vec<i32>) -> i32 {
     let mut l = list.clone();
     l.sort();
-    println!("{:?}",l);
     match l.len() % 2 {
-        0 => (l[l.len() / 2] + l[l.len() / 2 + 1]) / 2,
+        0 => (l[l.len() / 2] + l[l.len() / 2 - 1]) / 2,
         _ => l[l.len() / 2 ],
     }
 }
@@ -42,10 +41,10 @@ mod tests {
 
     #[test]
     fn test_median() {
-        let v = vec![4, 7, 5, 2, 5, 1, 3];
+        let v = vec![2, 1, 5, 2, 7, 4];
 
         let result = median(&v);
-        assert_eq!(result, 4);
+        assert_eq!(result, 3);
     }
 
     #[test]
