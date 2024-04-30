@@ -45,6 +45,10 @@ impl TodoList {
                     })
                 });
 
+                if todo_list.tasks.len() == 0 {
+                    return Err(Box::new(ParseErr::Empty));
+                }
+
                 Ok(todo_list)
             }
             Err(e) => Err(Box::new(ParseErr::Malformed(Box::new(e)))),
