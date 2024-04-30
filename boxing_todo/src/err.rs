@@ -14,7 +14,7 @@ impl Display for ParseErr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
             ParseErr::Empty => write!(f, "Fail to parse todo"),
-            ParseErr::Malformed(_) => write!(f, "Fail to parse todo "),
+            ParseErr::Malformed(_) => write!(f, "Fail to parse todo"),
         }
     }
 }
