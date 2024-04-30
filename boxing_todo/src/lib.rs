@@ -1,4 +1,3 @@
-// lib.rs
 
 mod err;
 use err::{ParseErr, ReadErr};
@@ -22,12 +21,12 @@ pub struct TodoList {
 impl TodoList {
     pub fn get_todo(path: &str) -> Result<TodoList, Box<dyn Error>> {
         let file_content = std::fs::read_to_string(path).map_err(|e| ReadErr {
-            child_err: Box::new(e)
+            child_err: Box::new(e),
         })?;
         if file_content.is_empty() {
             return Err(Box::new(ParseErr::Empty));
         }
-        
+
         match json::parse(&file_content) {
             Ok(value) => {
                 let mut todo_list = TodoList {
