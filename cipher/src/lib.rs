@@ -13,25 +13,37 @@ impl CipherError {
     }
 }
 pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError>> {
-    if original.is_empty() {
+    if original.trim().is_empty() || ciphered.trim().is_empty() {
         return None;
     }
 
+    let mut res: Vec<char> = Vec::new();
+
     let ciph_chars: Vec<char> = ciphered.chars().collect();
-    // let valid = true;
+    let mut valid = true;
     for (idx, ch) in original.char_indices() {
         if !ch.is_alphabetic() {
+            res.push(ch);
             continue;
         }
-        let m = 97 + (25 - (ch.to_ascii_lowercase() as i32 - 97));
+        let m = 97 + (25 - (ch.to_ascii_lowercase() as u32 - 97));
 
-        if idx >= ciph_chars.len() || m != ciph_chars[idx].to_ascii_lowercase() as i32 {
-            let a = Some(Result::Err::<bool, CipherError>(CipherError::new(
-                false,
-                ciphered.to_string(),
-            )));
-            return a;
+        if idx >= ciph_chars.len() || m != ciph_chars[idx].to_ascii_lowercase() as u32 {
+            valid = false;
         }
+        res.push(char::from_u32(m).unwrap());
+    }
+
+    let expected = res
+        .iter()
+        .map(char::to_string)
+        .collect::<Vec<String>>()
+        .join("");
+    if !valid {
+        return Some(Result::Err::<bool, CipherError>(CipherError::new(
+            false,
+            expected,
+        )));
     }
     Some(Result::Ok(true))
 }
