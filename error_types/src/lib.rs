@@ -55,7 +55,7 @@ impl Form {
         }
         res.push("Valid first name");
 
-        if self.password.len() <= 8 {
+        if self.password.len() < 8 {
             return Err::<Vec<&str>, FormError>(FormError::new(
                 "password".to_string(),
                 self.password.clone(),
