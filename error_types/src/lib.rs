@@ -57,8 +57,8 @@ impl Form {
 
         if self.password.len() <= 8 {
             return Err::<Vec<&str>, FormError>(FormError::new(
-                "first_name".to_string(),
-                self.first_name.clone(),
+                "password".to_string(),
+                self.password.clone(),
                 "At least 8 characters".to_string(),
             ));
         }
@@ -67,8 +67,8 @@ impl Form {
             || !self.password.chars().any(|c| !c.is_alphanumeric())
         {
             return Err::<Vec<&str>, FormError>(FormError::new(
-                "first_name".to_string(),
-                self.first_name.clone(),
+                "password".to_string(),
+                self.password.clone(),
                 "Combination of different ASCII character types (numbers, letters and none alphanumeric characters)".to_string(),
             ));
         };
