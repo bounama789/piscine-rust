@@ -14,7 +14,7 @@ impl Display for ParseErr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
             ParseErr::Empty => write!(f, "Fail to parse todo"),
-            ParseErr::Malformed(err) => write!(f, "Fail to parse todo Malformed({})",err),
+            ParseErr::Malformed(_) => write!(f, "Fail to parse todo"),
         }
     }
 }
@@ -34,7 +34,7 @@ impl Error for ParseErr {
     fn source(&self) -> Option<&(dyn Error + 'static)> {
         match self {
             ParseErr::Empty => None,
-            ParseErr::Malformed(err) => Some(err.as_ref().source()?),
+            ParseErr::Malformed(err) => Some(err.as_ref()),
         }
     }
 }
