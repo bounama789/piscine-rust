@@ -26,7 +26,7 @@ pub struct ReadErr {
 
 impl Display for ReadErr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Fail to read todo file ")
+        write!(f, "Fail to read todo file")
     }
 }
 
