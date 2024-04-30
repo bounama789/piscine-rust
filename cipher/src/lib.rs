@@ -26,9 +26,13 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
             res.push(ch);
             continue;
         }
-        let m = 97 + (25 - (ch.to_ascii_lowercase() as u32 - 97));
+        let m = if ch.is_lowercase() {
+            97 + (25 - (ch as u32 - 97))
+        } else {
+            65 + (25 - (ch as u32 - 65))
+        };
 
-        if idx >= ciph_chars.len() || m != ciph_chars[idx].to_ascii_lowercase() as u32 {
+        if idx >= ciph_chars.len() || m != ciph_chars[idx] as u32 {
             valid = false;
         }
         res.push(char::from_u32(m).unwrap());
@@ -41,8 +45,7 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
         .join("");
     if !valid {
         return Some(Result::Err::<bool, CipherError>(CipherError::new(
-            false,
-            expected,
+            false, expected,
         )));
     }
     Some(Result::Ok(true))
