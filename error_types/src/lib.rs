@@ -11,7 +11,7 @@ impl FormError {
     pub fn new(field_name: String, field_value: String, err: String) -> FormError {
         FormError {
             form_values: (field_name, field_value),
-            date: Utc::now().to_string(),
+            date: Utc::now().format("%Y-%m-%d %H:%M:%S").to_string(),
             err,
         }
     }
