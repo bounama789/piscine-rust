@@ -39,9 +39,9 @@ impl TodoList {
                     let id: u32 = k["id"].to_string().parse().unwrap();
                     let level: u32 = k["level"].to_string().parse().unwrap();
                     todo_list.tasks.push(Task {
-                        id: id,
+                        id,
                         description: k["description"].to_string(),
-                        level: level,
+                        level,
                     })
                 });
 
