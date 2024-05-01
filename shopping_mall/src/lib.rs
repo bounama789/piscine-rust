@@ -3,8 +3,8 @@ use std::ops::Sub;
 
 pub use floor::store::employee::*;
 pub use mall::floor::*;
-pub use mall::*;
 use mall::guard::Guard;
+pub use mall::*;
 
 pub fn biggest_store(mall: Mall) -> store::Store {
     let u = mall
@@ -33,8 +33,9 @@ pub fn biggest_store(mall: Mall) -> store::Store {
         .clone()
 }
 
-pub fn highest_paid_employee(mall: Mall) -> Employee{
+pub fn highest_paid_employee(mall: Mall) -> Vec<Employee> {
     let mut h_e: Option<Employee> = None;
+    let mut res: Vec<Employee> = Vec::new();
     mall.floors.iter().for_each(|f| {
         f.stores.iter().for_each(|s| {
             let m = s
@@ -43,19 +44,28 @@ pub fn highest_paid_employee(mall: Mall) -> Employee{
                 .max_by(|e1, e2| e1.salary.total_cmp(&e2.salary))
                 .unwrap();
 
-                if h_e.is_none() {
+            if h_e.is_none() {
+                h_e = Some(m.clone());
+            } else {
+                let e = h_e.clone().unwrap();
+                if e.salary <= m.salary {
                     h_e = Some(m.clone());
-                } else  {
-                    let e = h_e.clone().unwrap();
-                    if e.salary < m.salary {
-                        h_e = Some(m.clone());
-                    }
+                    res.push(m.clone())
                 }
+            }
         });
-       
     });
+    let mut filtered_res: Vec<Employee> = Vec::new();
+    let mut last_salary = None;
 
-    h_e.unwrap()
+    for x in res.iter() {
+        if last_salary.is_none() || x.salary == last_salary.unwrap() {
+            filtered_res.push(x.clone());
+            last_salary = Some(x.salary);
+        }
+    }
+
+    filtered_res
 }
 pub fn nbr_of_employees(mall: Mall) -> usize {
     mall.floors.iter().fold(0, |acc, floor| {
