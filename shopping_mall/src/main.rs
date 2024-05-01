@@ -1,7 +1,4 @@
 use shopping_mall::*;
-
-
-
 fn main() {
     let secs = vec![
         mall::guard::Guard::new("John Oliver", 34, 7),
