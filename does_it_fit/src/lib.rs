@@ -1,8 +1,7 @@
 mod areas_volumes;
 
 use areas_volumes::{
-    cone_volume, cube_volume, parallelepiped_volume, rectangle_area, sphere_volume, square_area,
-    triangle_area, triangular_pyramid_volume,
+    circle_area, cone_volume, cube_volume, parallelepiped_volume, rectangle_area, sphere_volume, square_area, triangle_area, triangular_pyramid_volume
 };
 pub use areas_volumes::{GeometricalShapes, GeometricalVolumes};
 
@@ -19,7 +18,7 @@ pub fn area_fit(
         areas_volumes::GeometricalShapes::Triangle => {
             triangle_area(a, b) * times as f64 <= rectangle_area(x, y) as f64
         }
-        areas_volumes::GeometricalShapes::Circle => square_area(a) * times <= rectangle_area(x, y),
+        areas_volumes::GeometricalShapes::Circle => circle_area(a) * times as f64 <= rectangle_area(x, y) as f64,
         areas_volumes::GeometricalShapes::Rectangle => {
             rectangle_area(a, b) * times <= rectangle_area(x, y)
         }
