@@ -4,7 +4,7 @@ use std::ops::Sub;
 pub use floor::store::employee::*;
 pub use mall::floor::*;
 pub use mall::*;
-use mall::{floor::store::employee, guard::Guard};
+use mall::guard::Guard;
 
 pub fn biggest_store(mall: Mall) -> store::Store {
     let u = mall
