@@ -40,7 +40,7 @@ pub fn volume_fit(
             cube_volume(a) * times <= cube_volume(rectangle_area(x, y))
         }
         areas_volumes::GeometricalVolumes::Sphere => {
-            sphere_volume(a) * times as f64 <= cube_volume(z) as f64
+            sphere_volume(a) * times as f64 <= cube_volume(rectangle_area(x, y)) as f64
         }
         areas_volumes::GeometricalVolumes::Pyramid => {
             triangular_pyramid_volume(a as f64, b) * times as f64
