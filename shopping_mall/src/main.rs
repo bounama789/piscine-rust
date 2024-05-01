@@ -23,7 +23,7 @@ fn main() {
     let pizbite_emp = vec![
         mall::floor::store::employee::Employee::new("Juniper Cannon", 21, 16, 23, 804.35),
         mall::floor::store::employee::Employee::new("Alena Simon", 28, 9, 15, 973.54),
-        mall::floor::store::employee::Employee::new("Yasemin Collins", 29, 9, 19, 986.33),
+        mall::floor::store::employee::Employee::new("Yasemin Collins", 29, 9, 19, 1234.21),
         mall::floor::store::employee::Employee::new("Areeb Roberson", 54, 9, 22, 957.82),
         mall::floor::store::employee::Employee::new("Rocco Amin", 44, 13, 23, 689.21),
     ];

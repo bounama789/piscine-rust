@@ -58,6 +58,8 @@ pub fn highest_paid_employee(mall: Mall) -> Vec<Employee> {
     let mut filtered_res: Vec<Employee> = Vec::new();
     let mut last_salary = None;
 
+    res.sort_by(|a, b| a.salary.total_cmp(&b.salary));
+
     for x in res.iter() {
         if last_salary.is_none() || x.salary == last_salary.unwrap() {
             filtered_res.push(x.clone());
