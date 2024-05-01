@@ -75,7 +75,7 @@ fn main() {
     let mut mall_la_vie = mall::Mall::new("La Vie Funchal", secs, floors);
 
     //returns the biggest store
-    // println!("Biggest store: {:#?}", biggest_store(mall_la_vie.clone()));
+    println!("Biggest store: {:#?}", biggest_store(mall_la_vie.clone()));
 
     //returns the list with the highest paid employees
     println!(

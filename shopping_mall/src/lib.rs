@@ -7,6 +7,8 @@ use mall::guard::Guard;
 pub use mall::*;
 
 pub fn biggest_store(mall: Mall) -> store::Store {
+
+    let empty_store = store::Store::new("", 0, [].to_vec());
     let u = mall
         .floors
         .iter()
@@ -15,12 +17,12 @@ pub fn biggest_store(mall: Mall) -> store::Store {
                 .stores
                 .iter()
                 .max_by(|x1, y1| x1.square_meters.cmp(&y1.square_meters))
-                .unwrap();
+                .unwrap_or(&empty_store);
             let b = y
                 .stores
                 .iter()
                 .max_by(|x1, y1| x1.square_meters.cmp(&y1.square_meters))
-                .unwrap();
+                .unwrap_or(&empty_store);
 
             a.square_meters.cmp(&b.square_meters)
         })
