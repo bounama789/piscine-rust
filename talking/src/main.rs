@@ -6,4 +6,5 @@ fn main() {
     println!("{:?}", talking("WHAT'S GOING ON?"));
     println!("{:?}", talking("something"));
     println!("{:?}", talking(""));
+    println!("{:?}", talking("7?"));
 }

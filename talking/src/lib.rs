@@ -3,7 +3,11 @@ pub fn talking(text: &str) -> &str {
         "Just say something!"
     } else if text == text.trim().to_uppercase() {
         if text.trim().ends_with('?') {
-            "Quiet, I am thinking!"
+            if text.contains(char::is_numeric)  {
+                "Sure."
+            } else {
+                "Quiet, I am thinking!"
+            }
         } else {
             "There is no need to yell, calm down!"
         }
