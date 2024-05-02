@@ -33,20 +33,19 @@ impl Mob {
         if self_power == other_power {
             self.members.pop();
         } else {
-            let mut winner: Option<&mut Mob>=None;
-            let mut loser: Option<&mut Mob> =None;
+            let mut winner: Option<&mut Mob> = None;
+            let mut loser: Option<&mut Mob> = None;
 
             if winner.is_none() || loser.is_none() {
-                 if self_power < other_power {
-                winner = Some(self);
-                loser = Some(other);
-            } else {
-                winner = Some(other);
-                loser = Some(self);
-            };
+                if self_power < other_power {
+                    winner = Some(other);
+                    loser = Some(self);
+                } else {
+                    winner = Some(other);
+                    loser = Some(self);
+                };
             }
 
-           
             if let Some(ref mut l) = loser {
                 l.members.pop();
 
