@@ -1,4 +1,4 @@
-#[derive(Debug,Clone, Copy,PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 
 pub struct Color {
     pub r: u8,
@@ -9,10 +9,24 @@ pub struct Color {
 
 impl Color {
     pub fn swap(mut self, first: u8, second: u8) -> Color {
-        self.r = if self.r == first { second } else { self.r };
-        self.g = if self.g == first { second } else { self.g };
-        self.b = if self.b == first { second } else { self.b };
-        self.a = if self.a == first { second } else { self.a };
+        let mut x = first;
+        let mut y = second;
+        if self.r == x {
+            self.r = y;
+            (x, y) = (y, x);
+        }
+
+        if self.g == x {
+            self.g = y;
+            (x, y) = (y, x);
+        }
+        if self.b == x {
+            self.b = y;
+            (x, y) = (y, x);
+        }
+        if self.a == x {
+            self.a = y;
+        }
         self
     }
 }
