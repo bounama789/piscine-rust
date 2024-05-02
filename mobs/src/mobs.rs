@@ -66,7 +66,7 @@ impl Mob {
         self.wealth += actual_amount;
     }
 
-    pub fn conquer_city(&mut self, mobs: &[Mob], city_name: String, value: u8) {
+    pub fn conquer_city(&mut self, mobs: Vec<&Mob>, city_name: String, value: u8) {
         if !mobs
             .iter()
             .any(|m| m.cities.iter().any(|(name, _)| name == &city_name))
