@@ -14,8 +14,8 @@ pub struct Mob {
 }
 
 impl Mob {
-    pub fn recruit(&mut self, name: String, age: u8) {
-        self.members.push(Member::new(&name, Role::Associate, age));
+    pub fn recruit(&mut self, name: &str, age: u8) {
+        self.members.push(Member::new(name, Role::Associate, age));
     }
 
     pub fn attack(&mut self, other: &mut Mob) {
