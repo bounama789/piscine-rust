@@ -29,13 +29,13 @@ impl Mob {
             .iter()
             .map(|m| m.role.clone() as u32)
             .sum::<u32>();
-
+        let mut winner: Option<&mut Mob> = None;
+        let mut loser: Option<&mut Mob> = None;
         if self_power == other_power {
             self.members.pop();
+            winner = Some(other);
+            loser = Some(self);
         } else {
-            let mut winner: Option<&mut Mob> = None;
-            let mut loser: Option<&mut Mob> = None;
-
             if winner.is_none() || loser.is_none() {
                 if self_power < other_power {
                     winner = Some(other);
@@ -45,15 +45,15 @@ impl Mob {
                     loser = Some(self);
                 };
             }
+        }
 
-            if let Some(ref mut l) = loser {
-                l.members.pop();
+        if let Some(ref mut l) = loser {
+            l.members.pop();
 
-                if l.members.is_empty() {
-                    if let Some(w) = winner {
-                        w.cities.append(&mut l.cities);
-                        w.wealth += l.wealth;
-                    }
+            if l.members.is_empty() {
+                if let Some(w) = winner {
+                    w.cities.append(&mut l.cities);
+                    w.wealth += l.wealth;
                 }
             }
         }
