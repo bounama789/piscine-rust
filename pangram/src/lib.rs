@@ -5,7 +5,7 @@ pub fn is_pangram(s: &str) -> bool {
     for c in s.chars() {
         if c.is_alphabetic() {
             let index = (c.to_ascii_lowercase() as usize) - ('a' as usize);
-            if !alphabet[index] {
+            if index < alphabet.len() && !alphabet[index] {
                 alphabet[index] = true;
                 count += 1;
             }
