@@ -20,5 +20,5 @@ fn main() {
         rotate("Testing with numbers 1 2 3", 4)
     );
     println!("Your cypher wil be: {}", rotate("Testing", -14));
-    // println!("The letter \"a\" becomes: {}", rotate("a", -1));
+    println!("The letter \"a\" becomes: {}", rotate("a", -1));
 }
