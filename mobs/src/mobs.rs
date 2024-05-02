@@ -33,8 +33,6 @@ impl Mob {
         let mut loser: Option<&mut Mob> = None;
         if self_power == other_power {
             self.members.pop();
-            winner = Some(other);
-            loser = Some(self);
         } else {
             if winner.is_none() || loser.is_none() {
                 if self_power < other_power {
