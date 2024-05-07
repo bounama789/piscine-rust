@@ -14,13 +14,8 @@ impl Node {
     }
 
     pub fn rm_all_ref(&mut self, element: Rc<String>) {
-        let refs = self.ref_list.clone();
+        self.ref_list.retain(|rc_str| !Rc::ptr_eq(rc_str, &element));
 
-        self.ref_list = refs
-            .iter()
-            .filter(|r| Rc::ptr_eq(r, &element))
-            .cloned()
-            .collect();
     }
 }
 
