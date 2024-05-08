@@ -31,16 +31,13 @@ impl Workers {
     }
 
     pub fn add_drop(&self, id: usize) {
-        if let Some(state) = self.states.borrow().get(id) {
-            match state {
-                true => {
-                    panic!("{} is already dropped", id);
-                }
+        let mut states = self.states.borrow_mut();
+        if let Some(state) = states.get(id) {
+            match *state {
+                true => println!("{} is already dropped", id),
                 false => {
-                    let mut states = self.states.borrow_mut();
-                    *states.get_mut(id).unwrap() = true;
-                    let a = self.drops.take();
-                    self.drops.set(a + 1);
+                    states[id] = true;
+                    self.drops.set(self.drops.get() + 1);
                 }
             }
         } else {
