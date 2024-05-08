@@ -1,7 +1,7 @@
 pub mod messenger;
 
 pub use messenger::{Logger, Tracker};
-use std::{cell::RefCell, collections::HashMap, rc::Rc};
+pub use std::{cell::RefCell, collections::HashMap, rc::Rc};
 
 pub struct Worker {
     pub track_value: Rc<usize>,
