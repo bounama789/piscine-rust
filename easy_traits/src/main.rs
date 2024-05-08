@@ -12,4 +12,10 @@ fn main() {
 
     str_aux.remove_punctuation_marks();
     println!("After removing punctuation: {}", str_aux.value);
+
+    str_aux.append_number(-1555 as f64);
+    println!("After append: {}", str_aux.value);
+
+    str_aux.remove_punctuation_marks();
+    println!("After removing punctuation: {}", str_aux.value);
 }
