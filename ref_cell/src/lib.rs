@@ -20,30 +20,33 @@ impl Worker {
 }
 
 impl Logger for Worker {
-    fn warning(& self, msg: &str) {
+    fn warning(&self, msg: &str) {
+        let (key, value) = msg.split_once(": ").unwrap();
         self.mapped_messages
             .borrow_mut()
-            .insert("Warning".to_string(), msg.to_string());
+            .insert(key.to_string(), value.to_string());
         self.all_messages
             .borrow_mut()
-            .push(format!("Warning: {}", msg));
+            .push(format!("{key}: {value}"));
     }
 
-    fn info(& self, msg: &str) {
+    fn info(&self, msg: &str) {
+        let (key, value) = msg.split_once(": ").unwrap();
         self.mapped_messages
             .borrow_mut()
-            .insert("Info".to_string(), msg.to_string());
+            .insert(key.to_string(), value.to_string());
         self.all_messages
             .borrow_mut()
-            .push(format!("Info: {}", msg));
+            .push(format!("{key}: {value}"));
     }
 
-    fn error(& self, msg: &str) {
+    fn error(&self, msg: &str) {
+        let (key, value) = msg.split_once(": ").unwrap();
         self.mapped_messages
             .borrow_mut()
-            .insert("Error".to_string(), msg.to_string());
+            .insert(key.to_string(), value.to_string());
         self.all_messages
             .borrow_mut()
-            .push(format!("Error: {}", msg));
+            .push(format!("{key}: {value}"));
     }
 }
