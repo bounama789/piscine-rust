@@ -26,10 +26,10 @@ impl<'z, L: Logger> Tracker<'z, L> {
         *self.value.borrow_mut() = Rc::strong_count(value);
         let percentage = (*self.value.borrow() * 100) as u32 / self.max as u32;
         if percentage >= 100 {
-            self.logger.error("Error: you are over your quota!");
+            self.logger.error("you are over your quota!");
         } else if percentage >= 70 {
             self.logger.warning(&format!(
-                "Warning: you have used up over {}% of your quota! Proceeds with precaution",
+                "you have used up over {}% of your quota! Proceeds with precaution",
                 percentage
             ));
         }
