@@ -29,7 +29,7 @@ impl<'z, L: Logger> Tracker<'z, L> {
             self.logger.error("Error: you are over your quota!");
         } else if percentage >= 70 {
             self.logger.warning(&format!(
-                "Warning: you have used up over {}% of your quota! Proceed with precaution",
+                "Warning: you have used up over {}% of your quota! Proceeds with precaution",
                 percentage
             ));
         }
@@ -38,7 +38,7 @@ impl<'z, L: Logger> Tracker<'z, L> {
     pub fn peek(&self, value: &Rc<usize>) {
         let percentage = (Rc::strong_count(value) * 100) as u32 / self.max;
         self.logger.info(&format!(
-            "Info: you are using up to {}% of your quota",
+            "you are using up to {}% of your quota",
             percentage
         ));
     }
