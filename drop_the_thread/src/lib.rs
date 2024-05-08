@@ -34,7 +34,7 @@ impl Workers {
         let mut states = self.states.borrow_mut();
         if let Some(state) = states.get(id) {
             match *state {
-                true => println!("{} is already dropped", id),
+                true => panic!("{} is already dropped", id),
                 false => {
                     states[id] = true;
                     self.drops.set(self.drops.get() + 1);
