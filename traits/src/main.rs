@@ -23,4 +23,10 @@ fn main() {
 	println!("After eating an apple\n{}", player1);
 	player1.eat(steak);
 	println!("After eating a steak\n{}", player1);
+
+	let steak = Meat {
+        weight_in_kg: 1.5,
+        fat_content: 0.3,
+    };
+    println!("{}, {}",steak.gives(), 8.25);
 }

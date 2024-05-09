@@ -34,14 +34,17 @@ impl Food for Fruit {
 
 impl Food for Meat {
     fn gives(&self) -> f64 {
-        (self.weight_in_kg - self.fat_content) * 4.0 + self.fat_content * 9.0
+        let fat_weight = self.fat_content * self.fat_content;
+        let prot = self.weight_in_kg - fat_weight;
+        prot * 4.0 + fat_weight * 9.0
     }
 }
 
 impl Display for Player {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.write_str(&format!(
-            "{}\nStrength: {}, Score: {}, Money: {}\nWeapons: {:?}", self.name,self.strength,self.score,self.money,self.weapons
+            "{}\nStrength: {}, Score: {}, Money: {}\nWeapons: {:?}",
+            self.name, self.strength, self.score, self.money, self.weapons
         ))
     }
 }
