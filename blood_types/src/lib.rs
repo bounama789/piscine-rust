@@ -92,18 +92,18 @@ impl BloodType {
     pub fn can_receive_from(&self, other: &Self) -> bool {
         match (other.antigen.clone(), other.rh_factor.clone()) {
             (Antigen::A, RhFactor::Positive) => {
-                other.antigen == self.antigen
-                    || (self.antigen == Antigen::AB && self.rh_factor == RhFactor::Positive)
+                (other.antigen == self.antigen
+                    || self.antigen == Antigen::AB) && self.rh_factor == RhFactor::Positive
             }
             (Antigen::A, RhFactor::Negative) => {
-                other.antigen == self.antigen || (self.antigen == Antigen::AB)
+                other.antigen == self.antigen || self.antigen == Antigen::AB
             }
             (Antigen::B, RhFactor::Positive) => {
-                other.antigen == self.antigen
-                    || (self.antigen == Antigen::AB && self.rh_factor == RhFactor::Positive)
+                (other.antigen == self.antigen
+                    || self.antigen == Antigen::AB) && self.rh_factor == RhFactor::Positive
             }
             (Antigen::B, RhFactor::Negative) => {
-                other.antigen == self.antigen || (self.antigen == Antigen::AB)
+                other.antigen == self.antigen || self.antigen == Antigen::AB
             }
             (Antigen::O, RhFactor::Positive) => other.rh_factor == self.rh_factor,
             (Antigen::O, RhFactor::Negative) => true,
