@@ -7,5 +7,5 @@ edition = "2021"
 
 [dependencies]
 chrono = "0.4.38"
-json = "0.12.4"
+json = "0.12"
 
