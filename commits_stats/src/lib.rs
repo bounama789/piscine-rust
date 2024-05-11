@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use chrono::{Datelike, NaiveDate};
+pub use chrono::NaiveDate;
 
 pub struct CommitData {}
 
