@@ -66,10 +66,8 @@ impl<'s> Event<'s> {
                 color: (255, 2, 22),
                 position: Top,
                 content: format!(
-                    "You have {}H:{}M:{}s left before the registration ends",
-                    dur.num_hours(),
-                    dur.num_minutes(),
-                    dur.num_seconds()
+                    "You have {} left before the registration ends",
+                    format_duration(*dur)
                 ),
             },
             Event::Appointment(msg) => Notification {
@@ -86,4 +84,13 @@ impl<'s> Event<'s> {
             },
         }
     }
+}
+
+fn format_duration(duration: Duration) -> String {
+    let total_seconds = duration.num_seconds();
+    let hours = total_seconds / 3600;
+    let minutes = (total_seconds % 3600) / 60;
+    let seconds = total_seconds % 60;
+
+    format!("{:02}H:{:02}M:{:02}S", hours, minutes, seconds)
 }
