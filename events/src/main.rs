@@ -10,4 +10,6 @@ fn main() {
 	println!("{}", appointment.notify());
 	let holiday = Holiday;
 	println!("{}", holiday.notify());
+    println!("{:?}", holiday.notify().color);
+
 }
