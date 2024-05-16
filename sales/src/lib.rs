@@ -11,11 +11,11 @@ impl Store {
 #[derive(Debug, Clone, PartialEq)]
 pub struct Cart {
     pub items: Vec<(String, f32)>,
-    pub reciept: Vec<f32>
+    pub receipt: Vec<f32>
 }
 impl Cart {
     pub fn new() -> Cart {
-        Self { items: Vec::new(),reciept:Vec::new() }
+        Self { items: Vec::new(),receipt:Vec::new() }
     }
     pub fn insert_item(&mut self, s: &Store, ele: String) {
         let products: Vec<&(String, f32)> = s.products.iter().filter(|c| c.0 == ele).collect();
@@ -40,11 +40,11 @@ impl Cart {
 
             let coef = 1.0 - (total - after_reduction) / total;
 
-            self.reciept = prices.iter().map(|p| (p * coef*100.0).round()/100.0).collect();
+            self.receipt = prices.iter().map(|p| (p * coef*100.0).round()/100.0).collect();
 
-            return self.reciept.clone()
+            return self.receipt.clone()
         };
-        self.reciept =prices.clone();
+        self.receipt =prices.clone();
         prices
     }
 }
