@@ -15,12 +15,12 @@ pub struct Truck<'a> {
 	pub load_tons: u32,
 }
 
-pub trait Vehicle<'a> {
+pub trait Vehicle {
 	fn model(&self) -> &str;
 	fn year(&self) -> u32;
 }
 
-impl<'a> Vehicle<'a> for Truck<'a> {
+impl Vehicle for Truck<'_> {
     fn model(&self) -> &str {
         &self.model
     }
@@ -30,7 +30,7 @@ impl<'a> Vehicle<'a> for Truck<'a> {
     }
 }
 
-impl<'a> Vehicle<'a> for Car<'a> {
+impl Vehicle for Car<'_> {
     fn model(&self) -> &str {
         &self.model
     }
@@ -40,7 +40,7 @@ impl<'a> Vehicle<'a> for Car<'a> {
     }
 }
 
-pub fn all_models<'a>(list: Vec<&'a dyn Vehicle>) -> Vec<&'a str> {
+pub fn all_models(list: Vec<&dyn Vehicle>) -> Vec<&str> {
    let a = list.iter().map(|&v|v.model()).collect();
 
    a
