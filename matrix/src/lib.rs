@@ -1,5 +1,3 @@
-mod  ops;
-
 use lalgebra_scalar::Scalar;
 
 
