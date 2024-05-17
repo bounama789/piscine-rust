@@ -1,7 +1,7 @@
 use highest::*;
 
 fn main() {
-    let expected = [30, 500, 20, 70];
+    let expected = [30, 70];
     let n = Numbers::new(&expected);
     println!("{:?}", n.list());
     println!("{:?}", n.highest());

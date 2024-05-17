@@ -14,14 +14,14 @@ impl<'a> Numbers<'a> {
 
     pub fn latest(&self) -> Option<u32> {
         if let Some(e) = self.numbers.last() {
-            return Some(*e)
+            return Some(*e);
         }
         None
     }
 
     pub fn highest(&self) -> Option<u32> {
         if let Some(e) = self.numbers.iter().max() {
-            return Some(*e)
+            return Some(*e);
         }
         None
     }
@@ -29,12 +29,14 @@ impl<'a> Numbers<'a> {
     pub fn highest_three(&self) -> Vec<u32> {
         let mut nbrs = self.numbers.to_vec();
         nbrs.sort();
-        let x = nbrs.len()-3;
 
-        if let Some(three) = nbrs.get_mut(x..) {
+        if nbrs.len() > 2 {
+            let x = nbrs.len()-3;
+            let three =nbrs.get_mut(x..).unwrap();
             three.reverse();
             return three.to_vec();
         }
-        self.numbers.to_vec()
+        nbrs.reverse();
+        nbrs.to_vec()
     }
 }
