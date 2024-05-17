@@ -1,4 +1,4 @@
-use adding::add_curry;
+pub use adding::add_curry;
 
 pub fn twice<T>(f: T) -> impl Fn(i32) -> i32
 where
