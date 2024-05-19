@@ -19,19 +19,14 @@ impl Iterator for Collatz {
 }
 impl Collatz {
     pub fn new(v: u64) -> Self {
-       let v = if v % 2 == 0 {
-                v / 2
-            } else {
-                3 * v + 1
-            };
         Collatz { v }
     }
 }
 pub fn collatz(n: u64) -> usize {
-    let mut c = Collatz::new(n);
-    let mut n = 0;
-    while let Some(_) = c.next() {
-        n += 1;
+    let mut collatz = Collatz::new(n);
+    let mut steps = 0;
+    while let Some(_) = collatz.next() {
+        steps += 1;
     }
-    n
+    steps
 }
