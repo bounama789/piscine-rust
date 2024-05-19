@@ -8,4 +8,9 @@ fn main() {
     println!("{:?}", collatz(6));
     println!("{:?}", collatz(7));
     println!("{:?}", collatz(133));
+
+    let a = Collatz::new(133);
+
+    println!("{}", a.count());
+
 }
