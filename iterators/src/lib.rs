@@ -19,6 +19,11 @@ impl Iterator for Collatz {
 }
 impl Collatz {
     pub fn new(v: u64) -> Self {
+       let v = if v % 2 == 0 {
+                v / 2
+            } else {
+                3 * v + 1
+            };
         Collatz { v }
     }
 }
