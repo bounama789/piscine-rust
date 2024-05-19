@@ -11,17 +11,15 @@ impl Collatz {
 }
 
 impl Iterator for Collatz {
-    type Item = u64;
+    type Item = Self;
 
     fn next(&mut self) -> Option<Self::Item> {
-        if self.v == 0 {
-            return None;
-        }
+
         if self.first {
             self.first = false;
-            return Some(self.v);
+            return Some(self.clone());
         }
-        if self.v == 1 {
+        if self.v <= 1 {
             None
         } else {
             self.v = if self.v % 2 == 0 {
@@ -29,16 +27,16 @@ impl Iterator for Collatz {
             } else {
                 3 * self.v + 1
             };
-            Some(self.v)
+            Some(self.clone())
         }
     }
 }
 
 pub fn collatz(n: u64) -> usize {
     let mut collatz = Collatz::new(n);
-    let mut steps = 0;
+    let mut steps = -1;
     while let Some(_) = collatz.next() {
         steps += 1;
     }
-    steps - 1
+    steps as usize
 }
