@@ -40,5 +40,5 @@ pub fn collatz(n: u64) -> usize {
     while let Some(_) = collatz.next() {
         steps += 1;
     }
-    steps - 1 // subtracting 1 to exclude the initial number itself
+    steps - 1
 }
