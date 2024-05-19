@@ -34,7 +34,7 @@ impl Iterator for Collatz {
 
 pub fn collatz(n: u64) -> usize {
     let mut collatz = Collatz::new(n);
-    let mut steps = -1;
+    let mut steps = 0;
     while let Some(_) = collatz.next() {
         steps += 1;
     }
