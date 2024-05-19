@@ -30,6 +30,13 @@ impl Iterator for Collatz {
             Some(self.clone())
         }
     }
+
+    fn count(self) -> usize
+        where
+            Self: Sized, {
+        collatz(self.v)
+    }
+    
 }
 
 pub fn collatz(n: u64) -> usize {
