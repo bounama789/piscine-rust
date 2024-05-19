@@ -91,3 +91,39 @@ impl From<u32> for RomanNumber {
         RomanNumber(roman_number)
     }
 }
+impl RomanNumber {
+    pub fn to_decimal(&self) -> u32 {
+        let mut total = 0;
+        let mut previous_value = 0;
+
+        for digit in self.0.iter().rev() {
+            let value = match digit {
+                Nulla => 0,
+                I => 1,
+                IV => 4,
+                V => 5,
+                IX => 9,
+                X => 10,
+                XL => 40,
+                L => 50,
+                XC => 90,
+                C => 100,
+                CD => 400,
+                D => 500,
+                CM => 900,
+                M => 1000,
+            };
+
+            // If a smaller numeral comes before a larger numeral, we need to subtract
+            if value < previous_value {
+                total -= value;
+            } else {
+                total += value;
+            }
+
+            previous_value = value;
+        }
+
+        total
+    }
+}
