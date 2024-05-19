@@ -15,10 +15,10 @@ impl Iterator for Collatz {
 
     fn next(&mut self) -> Option<Self::Item> {
 
-        if self.first {
-            self.first = false;
-            return Some(self.clone());
-        }
+        // if self.first {
+        //     self.first = false;
+        //     return Some(self.clone());
+        // }
         if self.v <= 1 {
             None
         } else {
