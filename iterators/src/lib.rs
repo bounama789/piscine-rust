@@ -1,0 +1,32 @@
+#[derive(Copy, Clone)]
+pub struct Collatz {
+    pub v: u64,
+}
+impl Iterator for Collatz {
+    type Item = Collatz;
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.v == 1 {
+            None
+        } else {
+            self.v = if self.v % 2 == 0 {
+                self.v / 2
+            } else {
+                3 * self.v + 1
+            };
+            Some(Collatz { v: self.v })
+        }
+    }
+}
+impl Collatz {
+    pub fn new(v: u64) -> Self {
+        Collatz { v }
+    }
+}
+pub fn collatz(n: u64) -> usize {
+    let mut c = Collatz::new(n);
+    let mut n = 0;
+    while let Some(_) = c.next() {
+        n += 1;
+    }
+    n
+}
