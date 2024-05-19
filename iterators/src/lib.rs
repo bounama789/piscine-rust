@@ -42,16 +42,3 @@ pub fn collatz(n: u64) -> usize {
     }
     steps - 1 // subtracting 1 to exclude the initial number itself
 }
-
-fn main() {
-    for val in Collatz::new(10) {
-        println!("{}", val); // This will print the sequence starting with 10
-    }
-    println!("{:?}", collatz(0));  // Special case, should handle this gracefully
-    println!("{:?}", collatz(1));  // 0 steps since it's already 1
-    println!("{:?}", collatz(4));  // 2 steps: 4 -> 2 -> 1
-    println!("{:?}", collatz(5));  // 5 steps: 5 -> 16 -> 8 -> 4 -> 2 -> 1
-    println!("{:?}", collatz(6));  // 8 steps: 6 -> 3 -> 10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1
-    println!("{:?}", collatz(7));  // 16 steps: 7 -> 22 -> 11 -> 34 -> 17 -> 52 -> 26 -> 13 -> 40 -> 20 -> 10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1
-    println!("{:?}", collatz(12)); // 9 steps: 12 -> 6 -> 3 -> 10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1
-}
