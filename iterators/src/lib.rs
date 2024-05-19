@@ -15,10 +15,10 @@ impl Iterator for Collatz {
 
     fn next(&mut self) -> Option<Self::Item> {
 
-        // if self.first {
-        //     self.first = false;
-        //     return Some(self.clone());
-        // }
+        if self.first {
+            self.first = false;
+            return Some(self.clone());
+        }
         if self.v <= 1 {
             None
         } else {
@@ -41,7 +41,7 @@ impl Iterator for Collatz {
 
 pub fn collatz(n: u64) -> usize {
     let mut collatz = Collatz::new(n);
-    let mut steps = 0;
+    let mut steps = -1;
     while let Some(_) = collatz.next() {
         steps += 1;
     }
